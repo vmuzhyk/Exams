@@ -58,7 +58,6 @@ namespace AnnouncementsAPI.Services
             Console.WriteLine($" {announcement.Id}   {announcement.Tittle}\n" +
                                         $"     {announcement.Description}    {announcement.DateAdded}");
                 Console.WriteLine();
-            
         }
         private void GetInputOfAnnouncement()
         {
@@ -72,7 +71,22 @@ namespace AnnouncementsAPI.Services
             InputDescription = inputDescription;
         }
 
-        
+        internal void SearchAnnouncement()
+        {
+            Console.WriteLine();
+            Console.Write("Enter what you want to search: ");
+            var inputSearch = Console.ReadLine();
+            var announcements = _context.Announcements
+                .Where(a => a.Tittle.Contains(inputSearch) || a.Description.Contains(inputSearch))
+                .ToList();
+            foreach (var announcement in announcements)
+            {
+                Console.WriteLine($" {announcement.Tittle}\n {announcement.Description}");
+                Console.WriteLine();
+            }
+
+        }
+
         public int GetIdOfAnnouncement()
         {
             int id;
@@ -115,12 +129,6 @@ namespace AnnouncementsAPI.Services
             return true;
         }
 
-
-
-
-        /*public void EnsureCreatingDatabase()
-        {
-            _context.Database.EnsureCreated();
-        }*/
+        
     }
 }

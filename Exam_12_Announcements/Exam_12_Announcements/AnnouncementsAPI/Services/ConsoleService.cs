@@ -24,8 +24,7 @@ namespace AnnouncementsAPI.Services
         private const string CommandEdit = "EDIT";
         private const string CommandDetails = "DETAILS";
         private const string CommandAdd = "ADD";
-        private const string CommandYes = "YES";
-        private const string CommandNo = "NO";
+        private const string CommandSearch = "SEARCH";
         private const string src = @"saves.json";
 
         private void DisplayWelcomeMessage()
@@ -83,6 +82,9 @@ namespace AnnouncementsAPI.Services
                 case CommandDetails:
                     _editorService.DetailsOfAnnouncement();
                     break;
+                case CommandSearch:
+                    _editorService.SearchAnnouncement();
+                    break;
             }
         }
         private void PrintAvaielableCommands()
@@ -96,6 +98,7 @@ namespace AnnouncementsAPI.Services
             Console.WriteLine($"{CommandList.ToLower()} - load list of announcements");
             Console.WriteLine($"{CommandDetails.ToLower()} - continue game");
             Console.WriteLine($"{CommandEdit.ToLower()} - edit announcement");
+            Console.WriteLine($"{CommandSearch.ToLower()} - search announcement");
         }
     }
 }
